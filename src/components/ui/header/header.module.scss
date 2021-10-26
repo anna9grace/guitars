@@ -1,15 +1,18 @@
-.inner {
-  // display: grid;
-  // grid-template-columns: 180px auto;
+.header {
+  background-color: var(--color-bg-light);
+}
 
-  // align-items: center;
+.button.hidden {
+  display: none;
+}
 
-  width: 100%;
-  min-width: 1000px;
-  max-width: 1020px;
-  padding-top: 20px;
-  padding-right: 40px;
-  padding-bottom: 20px;
-  margin-right: auto;
-  margin-left: auto;
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  flex-grow: 1;
+  max-width: 510px;
 }

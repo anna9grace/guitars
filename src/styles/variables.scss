@@ -1,0 +1,17 @@
+:root {
+  --color-primary-black: #000000;
+  --color-primary-white: #ffffff;
+  --color-bg-light: #DDDADA;
+  --color-bg-dark: #3F3F3F;
+  --color-accented: #E27F00;
+
+  --max-desktop-width: 1020px;
+  --min-desktop-width: 1000px;
+  --max-tablet-width: 999px;
+  --min-tablet-width: 768px;
+  --max-mobile-width: 767px;
+  --min-mobile-width: 320px;
+
+  --default-transition-settings: 0.3s ease;
+  --modal-transition-settings: 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+}

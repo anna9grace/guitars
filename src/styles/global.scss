@@ -1,13 +1,11 @@
-@import-normalize;
-
 @font-face {
   font-family: 'droid-sans';
   font-weight: 400;
   font-style: normal;
 
   font-display: swap;
-  src: url('../../assets/fonts/droid-sans-regular.woff2') format('woff2'),
-    url('../../assets/fonts/droid-sans-regular.woff') format('woff');
+  src: url('../assets/fonts/droid-sans-regular.woff2') format('woff2'),
+    url('../assets/fonts/droid-sans-regular.woff') format('woff');
 }
 
 @font-face {
@@ -16,8 +14,8 @@
   font-style: normal;
 
   font-display: swap;
-  src: url('../../assets/fonts/droid-sans-bold.woff2') format('woff2'),
-    url('../../assets/fonts/droid-sans-bold.woff') format('woff');
+  src: url('../assets/fonts/droid-sans-bold.woff2') format('woff2'),
+    url('../assets/fonts/droid-sans-bold.woff') format('woff');
 }
 
 body {
@@ -28,7 +26,8 @@ body {
   font-family: 'droid-sans', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
-  background-color: tomato;
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-black);
 }
 
 img {
@@ -63,4 +62,14 @@ a {
 
   border: 0;
   clip-path: inset(100%);
+}
+
+.container {
+  width: 100%;
+  min-width: var(--min-mobile-width);
+  max-width: var(--max-desktop-width);
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 40px;
+  padding-right: 40px;
 }
