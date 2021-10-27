@@ -6,8 +6,10 @@ import Logo from '../../ui/logo/logo';
 function Footer({isMain}) {
   return (
     <footer className={styles.footer}>
-      <div className={'container'}>
-        <Logo isFooter isLink={!isMain}/>
+      <div className={styles.wrapper}>
+        <div className={'container'}>
+          <Logo isFooter isLink={!isMain}/>
+        </div>
       </div>
     </footer>
   );
