@@ -4,11 +4,30 @@ import classNames from 'classnames';
 import styles from './header.module.scss';
 import Logo from '../../ui/logo/logo';
 import Button from '../../ui/button/button';
-import Navbar from '../../ui/navbar/navbar';
+import LinksList from '../../ui/links-list/links-list';
 import UserPanel from '../../ui/user-panel/user-panel';
 import { NavLinks } from '../../../const';
 
 function Header({isMain}) {
+  const navLinks = [
+    {
+      name: NavLinks.CATALOG,
+      href: '/',
+    },
+    {
+      name: NavLinks.WHERE_BUY,
+      href: '/where-to-buy',
+    },
+    {
+      name: NavLinks.ABOUT,
+      href: '/about',
+    },
+    {
+      name: NavLinks.SERVICE,
+      href: '/service-centres',
+    },
+  ];
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
@@ -25,7 +44,10 @@ function Header({isMain}) {
 
           <Logo isLink={!isMain}/>
 
-          <Navbar currentPage={NavLinks.CATALOG} className={styles.navbar}/>
+          <nav className={styles.navbar}>
+            <LinksList links={navLinks} currentPage={NavLinks.CATALOG} />
+          </nav>
+
           <UserPanel />
 
         </div>
