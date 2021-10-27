@@ -1,0 +1,48 @@
+.header {
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  background-color: var(--color-bg-light);
+  margin-bottom: 250px;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1150px;
+    height: 290px;
+    min-width: 100%;
+    background: url("./image_header.png") 100% top no-repeat,
+      url("./Line_header.svg") center 60px no-repeat;
+    background-size: 878px, 100%;
+
+    @media (min-resolution: 2dppx) {
+      background-image: url("./image_header@2x.png"),
+        url("./Line_header.svg");
+    }
+
+    @media (min-width: 1150px) {
+      background-position-x: calc(50% + 130px), center;
+    }
+  }
+}
+
+.button.hidden {
+  display: none;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  flex-grow: 1;
+  max-width: 510px;
+}

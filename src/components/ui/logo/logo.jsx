@@ -17,7 +17,7 @@ function Logo({isLink, isFooter, className, ...attrs}) {
         styles.logo,
         // isFooter && styles.logo_footer,
       )}
-      to={isLink ? '/' : false}
+      to={isLink ? '/' : undefined}
     >
       <img
         src={isFooter ? logoFooter : logo}

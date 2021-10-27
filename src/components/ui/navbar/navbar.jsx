@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import styles from './navbar.module.scss';
+import LinksList from '../links-list/links-list';
 import { NavLinks } from '../../../const';
 
 function Navbar({currentPage, className}) {
@@ -24,23 +23,9 @@ function Navbar({currentPage, className}) {
     },
   ];
 
-  const renderNavLinks = (data) => (
-    data.map((link) => {
-      const Tag = currentPage === link.name ? 'span' : Link;
-
-      return (
-        <li key={link.name} className={styles.item}>
-          <Tag to={link.href}>{link.name}</Tag>
-        </li>
-      );
-    })
-  );
-
   return (
     <nav className={className}>
-      <ul className={styles.list}>
-        {renderNavLinks(navLinks)}
-      </ul>
+      <LinksList links={navLinks} currentPage={currentPage} />
     </nav>
   );
 }
