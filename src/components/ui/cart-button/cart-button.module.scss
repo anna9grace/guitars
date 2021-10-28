@@ -1,0 +1,12 @@
+.button {
+  position: relative;
+}
+
+.chip {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--color-red);
+}

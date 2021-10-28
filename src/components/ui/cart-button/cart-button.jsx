@@ -12,7 +12,7 @@ function CartButton({children, ...attrs}) {
   return (
     <Button className={styles.button} {...attrs}>
       {children}
-      <span className={styles.chip}>{inCartCount}</span>
+      <span className={styles.chip}>{inCartCount === 0 ? '' : inCartCount}</span>
     </Button>
   );
 }
