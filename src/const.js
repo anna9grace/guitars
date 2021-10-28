@@ -1,5 +1,6 @@
 export const NameSpace = {
-  DATA: 'data',
+  DATA: 'dataSlice',
+  CART: 'cartSlice',
 };
 
 export const NavLinks = {

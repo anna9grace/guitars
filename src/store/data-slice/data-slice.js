@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const dataSlice = createSlice({
-  name: 'data',
+  name: 'dataSlice',
   initialState,
   reducers: {
     setIsLoaded (state) {
