@@ -1,0 +1,32 @@
+.list {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-of-type)::after {
+    content: "";
+    width: 12px;
+    height: 7px;
+    background: url("./icon_arrow-right.svg") center center no-repeat;
+  }
+
+  a {
+    transition: color var(--default-transition-settings),
+    opacity var(--default-transition-settings);
+
+    &:hover,
+    &:active {
+      color: var(--color-accented);
+      outline: none;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
