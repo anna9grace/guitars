@@ -1,0 +1,47 @@
+[33mcommit e6eb93cb97a877dc182235464652fa418f714509[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Fri Oct 29 13:00:26 2021 +0300
+
+    create Breadcrumbs component
+
+[33mcommit f244816e31fc3c1e0d3f07280b855da7b5fc48c6[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Thu Oct 28 15:40:49 2021 +0300
+
+    add Title-component
+
+[33mcommit 4f66e28cb86c19f16aba3cb5cfa28bc742e5e1ec[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Thu Oct 28 12:52:12 2021 +0300
+
+    connect store to app
+
+[33mcommit c2598012d47daf66712051b1c8c1a17d8d124051[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Wed Oct 27 17:16:14 2021 +0300
+
+    finish Footer-component
+
+[33mcommit 4169fd16d2d361efc446a323d9d250818a745f73[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Wed Oct 27 14:24:26 2021 +0300
+
+    create Footer-wrapper's styles
+
+[33mcommit 0a289e0cabda2e379d65830873290417a84d289b[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Wed Oct 27 11:48:02 2021 +0300
+
+    complete Header-component's layout and styles
+
+[33mcommit ce0f2fe21e5996bde6a2a49397a3ff8f402a8a8a[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Tue Oct 26 13:41:47 2021 +0300
+
+    create Logo and Navbar components
+
+[33mcommit d7af4b04cadd729bffef273f062a2a7ac3d6bd30[m
+Author: AnnaRodionova <anna9grace@gmail.com>
+Date:   Tue Oct 26 10:29:28 2021 +0300
+
+    add project

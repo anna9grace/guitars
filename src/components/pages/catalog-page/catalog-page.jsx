@@ -5,6 +5,7 @@ import Header from '../../blocks/header/header';
 import Footer from '../../blocks/footer/footer';
 import Title from '../../ui/title/title';
 import Breadcrumbs from '../../ui/breadcrumbs/breadcrumbs';
+import Catalog from '../../blocks/catalog/catalog';
 
 function CatalogPage() {
   const BreadcrumbsLinks = [
@@ -23,7 +24,7 @@ function CatalogPage() {
       <main className={'container'}>
         <Title>Каталог гитар</Title>
         <Breadcrumbs links={BreadcrumbsLinks}/>
-        <div>content</div>
+        <Catalog />
       </main>
       <Footer isMain />
     </div>

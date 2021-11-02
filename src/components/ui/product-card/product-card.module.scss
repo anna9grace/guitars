@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 14px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.reviews {
+  display: inline-block;
+  color: var(--color-secondary-active);
+  font-size: 10px;
+  line-height: 10px;
+  padding-top: 2px;
+  margin-left: 5px;
+}

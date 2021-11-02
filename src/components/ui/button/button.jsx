@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './button.module.scss';
 
-function Button({className, children, primary, secondary, ...attrs}) {
+function Button({className, children, primary, secondary, icon, ...attrs}) {
   const Tag = attrs.to ? Link : 'button';
 
   return (
@@ -12,8 +12,9 @@ function Button({className, children, primary, secondary, ...attrs}) {
       className={classNames(
         className,
         styles.button,
-        primary && styles.accented,
+        primary && styles.primary,
         secondary && styles.secondary,
+        icon && styles['with-icon'],
       )}
       {...attrs}
     >
@@ -26,6 +27,7 @@ Button.propTypes = {
   className: PropTypes.string,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
+  icon: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 
