@@ -8,7 +8,7 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  margin-bottom: 0;
+  margin-bottom: 30px;
 }
 
 .button {
@@ -17,4 +17,23 @@
   min-width: max-content;
   margin-top: 40px;
   text-transform: uppercase;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 14px;
+
+  input {
+    width: 84px;
+    text-align: center;
+  }
+
+  .divider {
+    width: 14px;
+    height: 1px;
+    background-color: var(--color-secondary-hover);
+  }
 }

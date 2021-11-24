@@ -1,0 +1,79 @@
+.field {
+  display: flex;
+  align-items: center;
+}
+
+.input[type="checkbox"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(100%);
+
+  & + label {
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 12px;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      margin-right: 16px;
+      border: 1px solid var(--color-secondary-active);
+      border-radius: 2px;
+    }
+  }
+
+  &:focus + label::before,
+  &:hover + label::before {
+    outline: none;
+    border-color: var(--color-accented);
+  }
+
+  &:active + label::before {
+    opacity: 0.7;
+  }
+
+  &:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    background: url('./icon-mark.svg') center no-repeat;
+  }
+}
+
+.input[type="text"] {
+  height: 28px;
+  border: 1px solid var(--color-secondary-active);
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.05em;
+
+  &::placeholder {
+    font-size: inherit;
+    font-family: inherit;
+    color: transparentize(#000000, 0.4);
+  }
+
+
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: var(--color-accented);
+  }
+}

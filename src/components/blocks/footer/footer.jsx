@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import styles from './footer.module.scss';
 import Logo from '../../ui/logo/logo';
 import Socials from '../../ui/socials/socials';
@@ -58,9 +58,9 @@ function Footer({isMain}) {
   return (
     <footer className={styles.footer}>
       <div className={styles.wrapper}>
-        <div className={classNames(styles.inner, 'container')}>
+        <div className={classnames(styles.inner, 'container')}>
 
-          <div classNames={styles['logo-block']}>
+          <div className={styles['logo-block']}>
             <Logo isFooter isLink={!isMain}/>
             <Socials />
           </div>

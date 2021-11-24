@@ -9,7 +9,7 @@ function Breadcrumbs({links, className}) {
     const Tag = link.path ? Link : 'span';
 
     return (
-      <li className={styles.item}>
+      <li className={styles.item} key={link.name}>
         <Tag
           to={link.path ?? undefined}
         >

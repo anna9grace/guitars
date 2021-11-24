@@ -18,10 +18,15 @@
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
+  color: var(--color-secondary-hover);
+}
+
+.direction-btn {
+  color: var(--color-secondary-hover);
 }
 
 .active {
-  color: var(--color-secondary-hover);
+  color: var(--color-primary-black);
 }
 
 .direction {
