@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from '../product-card/product-card';
 import styles from './product-list.module.scss';
+import { getFilteredGuitars } from '../../../store/data-slice/selectors';
+import { useSelector } from 'react-redux';
+import { MAX_PRODUCTS_SHOWN } from '../../../const';
 
 function ProductList() {
-  const ar = [1, 2, 3, 4, 5, 6];
+  const guitars = useSelector(getFilteredGuitars);
+  const [startIndex, setStartIndex] = useState(0);
+  console.log(guitars);
+
+  useEffect(() => {
+    setStartIndex(0);
+  }, [guitars]);
+
+  // const onShowMoreClick = () => dispatch(getGuitarsRenderedCount());
+
+  const guitarsToShow = guitars.slice(startIndex, Math.min(guitars.length, startIndex + MAX_PRODUCTS_SHOWN));
+
   return (
     <ul className={styles.list}>
-      {ar.map((item, i) => (
-        <li key={item} className={styles.item}>
-          <ProductCard />
+      {guitarsToShow.map((item) => (
+        <li key={item.id} className={styles.item}>
+          <ProductCard guitarData={item}/>
         </li>
       ))}
     </ul>

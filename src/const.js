@@ -32,3 +32,5 @@ export const sortSettings = {
     DOWN: 'down',
   },
 };
+
+export const MAX_PRODUCTS_SHOWN = 9;

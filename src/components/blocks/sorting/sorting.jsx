@@ -10,7 +10,6 @@ import { setSortSettings } from '../../../store/data-slice/data-slice';
 function Sorting() {
   const dispatch = useDispatch();
   const sorting = useSelector(getSortSettings);
-  // evt.target.dataset
 
   const changeSortHandler = (evt, sortType) => {
     evt.preventDefault();

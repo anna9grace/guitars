@@ -8,26 +8,13 @@ import cartIcon from './icon_to-cart.svg';
 import Rating from '../rating/rating';
 import Button from '../button/button';
 
-function ProductCard({className}) {
-
-  // const guitars =
-  //   {
-  //     'article' : 'SO757575',
-  //     'id' : 1,
-  //     'name' : 'Честер Bass',
-  //     'picture' : 'chester_bass',
-  //     'price' : 17500,
-  //     'reviews' : 15,
-  //     'strings' : 7,
-  //     'type' : 'electric',
-  //   };
-
+function ProductCard({className, guitarData}) {
 
   return (
     <article className={classNames(styles.wrapper, className)}>
       <div className={styles.photo}>
         <picture>
-          <img src={photo} alt="Честер Bass" width="80" height="202"
+          <img src={photo} alt={guitarData.name} width="80" height="202"
             srcSet={photo2X}
           />
         </picture>
@@ -35,11 +22,11 @@ function ProductCard({className}) {
       <div className={styles.inner}>
         <div className={styles.rating}>
           <Rating rating={4.5}/>
-          <span className={styles.reviews}>15</span>
+          <span className={styles.reviews}>{guitarData.reviews}</span>
         </div>
         <div className={styles.info}>
-          <p>Честер Bass</p>
-          <p><span>17500</span> ₽</p>
+          <p>{guitarData.name}</p>
+          <p><span>{guitarData.price}</span> ₽</p>
         </div>
         <div className={styles.buttons}>
           <Button to={'/#'} secondary>Подробнее</Button>
@@ -55,6 +42,7 @@ function ProductCard({className}) {
 
 ProductCard.propTypes = {
   className: PropTypes.string,
+  guitarData: PropTypes.object.isRequired,
 };
 
 export default ProductCard;

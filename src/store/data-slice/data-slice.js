@@ -4,6 +4,7 @@ import { sortSettings } from '../../const';
 
 const initialState = {
   guitars: guitars,
+  filteredGuitars: guitars,
   sorting: {
     type: sortSettings.type.PRICE,
     direction: sortSettings.direction.UP,
