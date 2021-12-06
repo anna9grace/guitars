@@ -65,6 +65,10 @@ a {
   clip-path: inset(100%);
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .container {
   width: 100%;
   min-width: var(--min-mobile-width);
