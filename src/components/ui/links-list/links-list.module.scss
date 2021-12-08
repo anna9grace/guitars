@@ -18,17 +18,16 @@
   }
 
   a[href] {
-    transition: color var(--default-transition-settings),
-      opacity var(--default-transition-settings);
+    transition: color var(--default-transition-settings);
 
     &:hover,
     &:active {
-      color: var(--color-accented);
+      color: var(--color-link-hover);
       outline: none;
     }
 
     &:active {
-      opacity: 0.7;
+      color: var(--color-link-active);
     }
   }
 

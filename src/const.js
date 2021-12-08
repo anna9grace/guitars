@@ -1,3 +1,5 @@
+export const MAX_PRODUCTS_SHOWN = 9;
+
 export const NameSpace = {
   DATA: 'dataSlice',
   CART: 'cartSlice',
@@ -11,26 +13,37 @@ export const NavLinks = {
   SERVICE: 'Сервис-центры',
 };
 
-export const InputTypes = {
-  CHECKBOX: 'checkbox',
-  TEXT: 'text',
+export const FiltersGroups = {
+  PRICE: 'price',
+  GUITAR_TYPE: 'type',
+  STRING_COUNT: 'strings',
 };
 
-export const FilterGroups = {
-  PRICE: 'price',
-  GUITAR_TYPE: 'guitarType',
-  STRING_COUNT: 'stringCount',
+export const FiltersOptions = {
+  [FiltersGroups.PRICE]: {
+    MIN: 'min',
+    MAX: 'max',
+  },
+  [FiltersGroups.GUITAR_TYPE]: {
+    ACOUSTIC: 'acoustic',
+    ELECTRIC: 'electric',
+    UKULELE: 'ukulele',
+  },
+  [FiltersGroups.STRING_COUNT]: {
+    FOUR: '4',
+    SIX: '6',
+    SEVEN: '7',
+    TWELVE: '12',
+  },
 };
 
 export const sortSettings = {
   type: {
     PRICE: 'price',
-    POPULARITY: 'popularity',
+    POPULARITY: 'reviews',
   },
   direction: {
     UP: 'up',
     DOWN: 'down',
   },
 };
-
-export const MAX_PRODUCTS_SHOWN = 9;

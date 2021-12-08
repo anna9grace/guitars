@@ -1,44 +1,152 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import styles from './filters.module.scss';
 import Fieldset from '../../ui/fieldset/fieldset';
 import Button from '../../ui/button/button';
 import Input from '../../ui/input/input';
-import { setInputValue, setCheckboxValue } from '../../../store/filters-slice/filters-slice';
-import { getGuitarFilters, getStringFilters, getPriceFilters } from '../../../store/filters-slice/selectors';
-import { InputTypes, FilterGroups } from '../../../const';
+import { FiltersGroups, FiltersOptions } from '../../../const';
+import { setFilters } from '../../../store/data-slice/data-slice';
 
-const PricePlaceholder = {
-  MIN: '1 000',
-  MAX: '30 000',
+const NUMBER_TEMPLATE = /^\d+$/;
+const PriceOptions = FiltersOptions[FiltersGroups.PRICE];
+const TypeOptions = FiltersOptions[FiltersGroups.GUITAR_TYPE];
+const StringsOptions = FiltersOptions[FiltersGroups.STRING_COUNT];
+
+const initialState = {
+  [FiltersGroups.PRICE]: {
+    [PriceOptions.MIN]: {
+      label: 'Минимальная цена',
+      value: '',
+      placeholder: '1 000',
+    },
+    [PriceOptions.MAX]: {
+      label: 'Максимальная цена',
+      value: '',
+      placeholder: '30 000',
+    },
+  },
+  [FiltersGroups.GUITAR_TYPE]:  {
+    [TypeOptions.ACOUSTIC]: {
+      label: 'Акустические гитары',
+      value: false,
+    },
+    [TypeOptions.ELECTRIC]: {
+      label: 'Электрогитары',
+      value: false,
+    },
+    [TypeOptions.UKULELE]: {
+      label: 'Укулеле гитары',
+      value: false,
+    },
+  },
+  [FiltersGroups.STRING_COUNT]: {
+    [StringsOptions.FOUR]: {
+      label: '4 струны',
+      value: false,
+      isDisabled: false,
+    },
+    [StringsOptions.SIX]: {
+      label: '6 струны',
+      value: false,
+      isDisabled: false,
+    },
+    [StringsOptions.SEVEN]: {
+      label: '7 струны',
+      value: false,
+      isDisabled: false,
+    },
+    [StringsOptions.TWELVE]: {
+      label: '12 струны',
+      value: false,
+      isDisabled: false,
+    },
+  },
 };
 
+const renderInput = (name, state, changeHandler, validationHandler) => (
+  <Input
+    type={'text'}
+    id={name}
+    name={name}
+    value={state[name].value}
+    placeholder={state[name].placeholder}
+    onChange={(evt) => {
+      const value = evt.target.value;
+      if (value.match(NUMBER_TEMPLATE) || value === '') {
+        const newState = {...state};
+        newState[name].value = value;
+        changeHandler(newState);
+      }
+    }}
+    onBlur={validationHandler}
+  >
+    {state[name].label}
+  </Input>
+);
+
+const renderCheckbox = (name, state, changeHandler) => (
+  <Input
+    type={'checkbox'}
+    key={name}
+    id={name}
+    name={name}
+    checked={state[name].value}
+    isLabelVisible
+    disabled={state[name].isDisabled}
+    onChange={() => {
+      const newState = {...state};
+      newState[name].value = !state[name].value;
+      changeHandler(newState);
+    }}
+
+  >
+    {state[name].label}
+  </Input>
+);
+
+const disableStringsOptions = (stringsState, typeState, updateState) => {
+  const newStringsState = {...stringsState};
+  stringsState[StringsOptions.FOUR].isDisabled = typeState[TypeOptions.ACOUSTIC].value;
+  stringsState[StringsOptions.SIX].isDisabled = typeState[TypeOptions.UKULELE].value;
+  stringsState[StringsOptions.SEVEN].isDisabled = typeState[TypeOptions.UKULELE].value;
+  stringsState[StringsOptions.TWELVE].isDisabled = typeState[TypeOptions.UKULELE].value || typeState[TypeOptions.ELECTRIC].value;
+  updateState(newStringsState);
+};
+
+
+const validatePrice = (priceState, updateState) => {
+  const minPrice = priceState[PriceOptions.MIN].value;
+  const maxPrice = priceState[PriceOptions.MAX].value;
+
+  if (minPrice && maxPrice && +minPrice > +maxPrice) {
+    const newPriceState = {...priceState};
+    newPriceState[PriceOptions.MIN].value = maxPrice;
+    newPriceState[PriceOptions.MAX].value = minPrice;
+    updateState(newPriceState);
+  }
+};
+
+
 function Filters() {
+  const [priceFilter, setPriceFilter] = useState(initialState[FiltersGroups.PRICE]);
+  const [typeFilter, setTypeFilter] = useState(initialState[FiltersGroups.GUITAR_TYPE]);
+  const [stringsFilter, setStringsFilter] = useState(initialState[FiltersGroups.STRING_COUNT]);
+
   const dispatch = useDispatch();
-  const filtersGuitarData = useSelector(getGuitarFilters);
-  const filtersStringData = useSelector(getStringFilters);
-  const filtersPriceData = useSelector(getPriceFilters);
+  const validationHandler = () => validatePrice(priceFilter, setPriceFilter);
 
-  const inputChangeHandler = (evt, group, name) => dispatch(setInputValue({group, name, value: evt.target.value}));
-  const checkboxChangeHandler = (evt, group, name) => dispatch(setCheckboxValue({group, name}));
+  useEffect(() => disableStringsOptions(stringsFilter, typeFilter, setStringsFilter), [typeFilter]);
 
-  const renderInput = (inputData, group, type, changeHandler, isLabel = true, placeholder) => (
-    <Input
-      key={inputData.name}
-      type={type}
-      id={inputData.name}
-      name={inputData.name}
-      value={inputData.value}
-      group={group}
-      isLabelVisible={isLabel}
-      placeholder={placeholder ?? undefined}
-      onChange={(evt) => changeHandler(evt, group, inputData.name)}
-    >
-      {inputData.label}
-    </Input>
-  );
-
+  const applyFiltersHandler = (evt) => {
+    evt.preventDefault();
+    const activeFilters = {
+      [FiltersGroups.PRICE]: [priceFilter[PriceOptions.MIN].value, priceFilter[PriceOptions.MAX].value],
+      [FiltersGroups.GUITAR_TYPE]: Object.keys(typeFilter).filter((key) => typeFilter[key].value),
+      [FiltersGroups.STRING_COUNT]: Object.keys(stringsFilter).filter((key) => stringsFilter[key].value),
+    };
+    dispatch(setFilters(activeFilters));
+  };
 
   return (
     <div className={styles.filters}>
@@ -47,21 +155,25 @@ function Filters() {
 
         <Fieldset legend={'Цена, ₽'} isRow>
           <div className={styles.price}>
-            {renderInput(filtersPriceData[0], FilterGroups.PRICE, InputTypes.TEXT, inputChangeHandler, false, PricePlaceholder.MIN)}
+            {renderInput(PriceOptions.MIN, priceFilter, setPriceFilter, validationHandler)}
             <span className={styles.divider}></span>
-            {renderInput(filtersPriceData[1], FilterGroups.PRICE, InputTypes.TEXT, inputChangeHandler, false, PricePlaceholder.MAX)}
+            {renderInput(PriceOptions.MAX, priceFilter, setPriceFilter, validationHandler)}
           </div>
         </Fieldset>
 
         <Fieldset legend={'Тип гитар'}>
-          {filtersGuitarData.map((input) => renderInput(input, FilterGroups.GUITAR_TYPE, InputTypes.CHECKBOX, checkboxChangeHandler))}
+          {Object
+            .keys(typeFilter)
+            .map((key) => renderCheckbox(key, typeFilter, setTypeFilter))}
         </Fieldset>
 
         <Fieldset legend={'Количество струн'}>
-          {filtersStringData.map((input) => renderInput(input, FilterGroups.STRING_COUNT, InputTypes.CHECKBOX, checkboxChangeHandler))}
+          {Object
+            .keys(stringsFilter)
+            .map((key) => renderCheckbox(key, stringsFilter, setStringsFilter))}
         </Fieldset>
 
-        <Button to={'/#'} className={styles.button} secondary>показать</Button>
+        <Button to={'/#'} className={styles.button} onClick={applyFiltersHandler} secondary>показать</Button>
       </div>
     </div>
   );

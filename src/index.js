@@ -6,11 +6,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import './index.scss';
 import dataSlice from './store/data-slice/data-slice';
 import cartSlice from './store/cart-slice/cart-slice';
-import filtersSlice from './store/filters-slice/filters-slice';
 import { App } from './components/app/app';
 
 const store = configureStore({
-  reducer: {dataSlice, cartSlice, filtersSlice},
+  reducer: {dataSlice, cartSlice},
 });
 
 

@@ -31,18 +31,37 @@
       margin-right: 16px;
       border: 1px solid var(--color-secondary-active);
       border-radius: 2px;
+      cursor: pointer;
+      transition: all var(--default-transition-settings);
     }
   }
 
-  &:focus + label::before,
+  &:focus-visible + label::before,
   &:hover + label::before {
     outline: none;
-    border-color: var(--color-accented);
+    border-color: var(--color-secondary-hover);
   }
 
   &:active + label::before {
-    opacity: 0.7;
+    outline: none;
+    border-color: var(--color-secondary);
   }
+
+
+  &:disabled + label {
+    color: var(--color-secondary);
+  }
+
+  &:disabled + label::before,
+  &:disabled:focus + label::before,
+  &:disabled:hover + label::before,
+  &:disabled:active + label::before {
+    background-color: var(--color-secondary-disabled);
+    border-color: var(--color-secondary);
+    opacity: 1;
+    cursor: initial;
+  }
+
 
   &:checked + label::after {
     content: '';
@@ -53,7 +72,9 @@
     height: 14px;
     flex-shrink: 0;
     background: url('./icon-mark.svg') center no-repeat;
+    cursor: pointer;
   }
+
 }
 
 .input[type="text"] {
@@ -63,6 +84,7 @@
   font-size: 14px;
   line-height: 14px;
   letter-spacing: 0.05em;
+  transition: all var(--default-transition-settings);
 
   &::placeholder {
     font-size: inherit;
@@ -70,10 +92,9 @@
     color: transparentize(#000000, 0.4);
   }
 
-
   &:focus,
   &:hover {
     outline: none;
-    border-color: var(--color-accented);
+    border-color: var(--color-secondary-hover);
   }
 }
