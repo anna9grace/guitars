@@ -10,7 +10,6 @@ const getGuitarsToShow = (index, guitars) => guitars.slice(index, Math.min(guita
 
 function ProductList() {
   const guitars = useSelector(getFilteredGuitars);
-  console.log(guitars);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
   let guitarsToShow = getGuitarsToShow(startIndex, guitars);

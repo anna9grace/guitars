@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -12,6 +13,7 @@ import Rating from '../rating/rating';
 import Button from '../button/button';
 import ProductPopup from '../../blocks/product-popup/product-popup';
 import Popup from '../popup/popup';
+import { addToCart } from '../../../store/cart-slice/cart-slice';
 
 const Pictures = {
   'ukulelePhoto': ukulelePhoto,
@@ -20,6 +22,7 @@ const Pictures = {
 };
 
 function ProductCard({className, guitarData}) {
+  const dispatch = useDispatch();
   const [guitarModalIsOpen, setGuitarModalIsOpen] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
   const pic = guitarData.picture;
@@ -27,10 +30,7 @@ function ProductCard({className, guitarData}) {
   const addToCartHandler = (evt) => {
     evt.preventDefault();
     setGuitarModalIsOpen(false);
-
-    //! логика по добавлению в корзину
-
-
+    dispatch(addToCart({...guitarData, quantity: 1 }));
     setSuccessModalIsOpen(true);
   };
 

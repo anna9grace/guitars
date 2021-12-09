@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Button from '../button/button';
 import styles from './user-panel.module.scss';
 import CartButton from '../cart-button/cart-button';
 
 function UserPanel({className}) {
+
   return (
     <div className={className}>
       <ul className={styles.list}>
