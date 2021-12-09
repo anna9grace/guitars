@@ -91,7 +91,7 @@ const renderCheckbox = (name, state, changeHandler) => (
     key={name}
     id={name}
     name={name}
-    checked={state[name].value}
+    checked={state[name].isDisabled ? false : state[name].value}
     isLabelVisible
     disabled={state[name].isDisabled}
     onChange={() => {

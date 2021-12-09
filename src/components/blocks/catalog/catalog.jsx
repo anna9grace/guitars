@@ -5,11 +5,10 @@ import CatalogBoard from '../catalog-board/catalog-board';
 
 function Catalog() {
 
-
   return (
     <div className={styles.wrapper}>
       <Filters />
-      <CatalogBoard />
+      <CatalogBoard className={styles.guitars}/>
     </div>
   );
 }

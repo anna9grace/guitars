@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../product-card/product-card';
 import styles from './product-list.module.scss';
-import { getFilteredGuitars, getFiltersSettings } from '../../../store/data-slice/selectors';
+import { getFilteredGuitars } from '../../../store/data-slice/selectors';
 import { useSelector } from 'react-redux';
 import { MAX_PRODUCTS_SHOWN } from '../../../const';
 import Pagination from '../pagination/pagination';
@@ -10,8 +10,7 @@ const getGuitarsToShow = (index, guitars) => guitars.slice(index, Math.min(guita
 
 function ProductList() {
   const guitars = useSelector(getFilteredGuitars);
-  // const filters = useSelector(getFiltersSettings);
-  // console.log(filters);
+  console.log(guitars);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
   let guitarsToShow = getGuitarsToShow(startIndex, guitars);

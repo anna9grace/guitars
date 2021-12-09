@@ -1,21 +1,71 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+
+import ukulelePhoto from './ukulele.png';
+import acousticPhoto from './acoustic.png';
+import electroPhoto from './electro.png';
+
 import styles from './product-card.module.scss';
-import photo from '../../../assets/img/chester_bass.png';
-import photo2X from '../../../assets/img/chester_bass@2x.png';
 import cartIcon from './icon_to-cart.svg';
 import Rating from '../rating/rating';
 import Button from '../button/button';
+import ProductPopup from '../../blocks/product-popup/product-popup';
+import Popup from '../popup/popup';
+
+const Pictures = {
+  'ukulelePhoto': ukulelePhoto,
+  'electroPhoto': electroPhoto,
+  'acousticPhoto': acousticPhoto,
+};
 
 function ProductCard({className, guitarData}) {
+  const [guitarModalIsOpen, setGuitarModalIsOpen] = useState(false);
+  const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
+  const pic = guitarData.picture;
+
+  const addToCartHandler = (evt) => {
+    evt.preventDefault();
+    setGuitarModalIsOpen(false);
+
+    //! логика по добавлению в корзину
+
+
+    setSuccessModalIsOpen(true);
+  };
+
+  const renderGuitarModal = () => (
+    <ProductPopup
+      modalIsOpen={guitarModalIsOpen}
+      closeModal={() => setGuitarModalIsOpen(false)}
+      title={'Добавить товар в корзину'}
+      guitarData={{
+        ...guitarData,
+        img: Pictures[pic],
+      }}
+    >
+      <Button className={styles['popup-btn']} onClick={addToCartHandler} primary>Добавить в корзину</Button>
+    </ProductPopup>
+  );
+
+  const renderSuccessModal = () => (
+    <Popup
+      modalIsOpen={successModalIsOpen}
+      closeModal={() => setSuccessModalIsOpen(false)}
+      title={'Товар успешно добавлен в корзину'}
+    >
+      <Button className={styles['popup-btn']} onClick={addToCartHandler} primary>Перейти в корзину</Button>
+      <Button className={styles['popup-btn']} onClick={() => setSuccessModalIsOpen(false)} ghost>Продолжить покупки</Button>
+    </Popup>
+  );
+
 
   return (
     <article className={classNames(styles.wrapper, className)}>
       <div className={styles.photo}>
         <picture>
-          <img src={photo} alt={guitarData.name} width="80" height="202"
-            srcSet={photo2X}
+          <img src={`${Pictures[pic]}`} alt={guitarData.name} width="80" height="202"
+            srcSet={`${Pictures[pic]}`}
           />
         </picture>
       </div>
@@ -28,21 +78,30 @@ function ProductCard({className, guitarData}) {
           <p>{guitarData.name}</p>
           <p><span>{guitarData.price}</span> ₽</p>
         </div>
+
         <div className={styles.buttons}>
           <Button to={'/#'} secondary>Подробнее</Button>
-          <Button to={'/#'} primary icon>
+          <Button to={'/#'} primary icon onClick={() => setGuitarModalIsOpen(true)}>
             <img src={cartIcon} alt='' width='12' height='12'/>
             <span>Купить</span>
           </Button>
         </div>
       </div>
+
+      {guitarModalIsOpen && renderGuitarModal()}
+      {successModalIsOpen && renderSuccessModal()}
     </article>
   );
 }
 
 ProductCard.propTypes = {
   className: PropTypes.string,
-  guitarData: PropTypes.object.isRequired,
+  guitarData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    reviews: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+  }),
 };
 
 export default ProductCard;

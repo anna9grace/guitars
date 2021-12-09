@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { guitars } from '../../mocks/guitars';
-import { sortSettings, FiltersGroups } from '../../const';
-import { sortGuitars } from '../../util';
+import { SortSettings, FiltersGroups } from '../../const';
+import { sortGuitars, filterGuitars } from '../../util';
 
 const initialSortState = {
-  type: sortSettings.type.PRICE,
-  direction: sortSettings.direction.UP,
+  type: SortSettings.type.PRICE,
+  direction: SortSettings.direction.UP,
 };
 
 const initialFiltersState = {
@@ -31,7 +31,7 @@ const dataSlice = createSlice({
     },
     setFilters (state, {payload}) {
       state.filters = payload;
-      const filteredGuitars = state.filteredGuitars;
+      const filteredGuitars = filterGuitars(state.guitars, state.filters);
       state.filteredGuitars = sortGuitars(filteredGuitars, state.sorting.type, state.sorting.direction);
     },
   },

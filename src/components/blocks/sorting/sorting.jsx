@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './sorting.module.scss';
 import Button from '../../ui/button/button';
 import classNames from 'classnames';
-import { sortSettings } from '../../../const';
+import { SortSettings } from '../../../const';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSortSettings } from '../../../store/data-slice/selectors';
 import { setSortSettings } from '../../../store/data-slice/data-slice';
@@ -23,16 +23,16 @@ function Sorting() {
 
       <div className={styles.type}>
         <Button
-          className={classNames(styles['type-btn'], sorting.type === sortSettings.type.PRICE && styles.active)}
-          data-sort-type={sortSettings.type.PRICE}
+          className={classNames(styles['type-btn'], sorting.type === SortSettings.type.PRICE && styles.active)}
+          data-sort-type={SortSettings.type.PRICE}
           onClick={(evt) => changeSortHandler(evt, 'type')}
         >
           по цене
         </Button>
 
         <Button
-          className={classNames(styles['type-btn'], sorting.type === sortSettings.type.POPULARITY && styles.active)}
-          data-sort-type={sortSettings.type.POPULARITY}
+          className={classNames(styles['type-btn'], sorting.type === SortSettings.type.POPULARITY && styles.active)}
+          data-sort-type={SortSettings.type.POPULARITY}
           onClick={(evt) => changeSortHandler(evt, 'type')}
         >
           по популярности
@@ -41,8 +41,8 @@ function Sorting() {
 
       <div className={styles.direction}>
         <Button
-          className={classNames(styles['direction-btn'], sorting.direction === sortSettings.direction.UP && styles.active)}
-          data-sort-type={sortSettings.direction.UP}
+          className={classNames(styles['direction-btn'], sorting.direction === SortSettings.direction.UP && styles.active)}
+          data-sort-type={SortSettings.direction.UP}
           onClick={(evt) => changeSortHandler(evt, 'direction')}
         >
           <span className={'visually-hidden'}>По возрастанию</span>
@@ -52,8 +52,8 @@ function Sorting() {
         </Button>
 
         <Button
-          className={classNames(styles['direction-btn'], sorting.direction === sortSettings.direction.DOWN && styles.active)}
-          data-sort-type={sortSettings.direction.DOWN}
+          className={classNames(styles['direction-btn'], sorting.direction === SortSettings.direction.DOWN && styles.active)}
+          data-sort-type={SortSettings.direction.DOWN}
           onClick={(evt) => changeSortHandler(evt, 'direction')}
         >
           <span className={'visually-hidden'}>По убыванию</span>

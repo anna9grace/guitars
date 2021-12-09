@@ -37,7 +37,7 @@ export const FiltersOptions = {
   },
 };
 
-export const sortSettings = {
+export const SortSettings = {
   type: {
     PRICE: 'price',
     POPULARITY: 'reviews',

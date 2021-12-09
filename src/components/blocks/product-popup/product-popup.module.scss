@@ -1,0 +1,51 @@
+.guitar {
+  display: flex;
+  margin-right: auto;
+  letter-spacing: 0.05em;
+}
+
+.picture {
+  margin-right: 41px;
+
+  img {
+    width: 56px;
+    height: 128px;
+    object-fit: contain;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.guitar-name {
+  margin-bottom: 14px;
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+.guitar-features {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+.guitar-price {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-size: 20px;
+  line-height: 15px;
+  font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+  min-height: 100%;
+  align-self: flex-start;
+}

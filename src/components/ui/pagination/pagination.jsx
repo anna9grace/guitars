@@ -14,6 +14,10 @@ function Pagination({guitarsCount, currentPage, clickHandler}) {
   const isFirstPageActive = currentPage === FIRST_PAGE;
   const isLastPageActive = currentPage === totalPages;
 
+  if (totalPages === FIRST_PAGE) {
+    return <div></div>;
+  }
+
   const renderFullPagination = () => (
     pages.map((page) => (
       <Button
