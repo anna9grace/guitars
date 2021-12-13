@@ -1,0 +1,8 @@
+.wrapper {
+  min-height: 164px;
+  border-top: 1px solid var(--color-bg-light);
+
+  &:last-of-type {
+    border-bottom: 1px solid var(--color-bg-light);
+  }
+}

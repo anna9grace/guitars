@@ -6,13 +6,13 @@ import Logo from '../../ui/logo/logo';
 import Button from '../../ui/button/button';
 import LinksList from '../../ui/links-list/links-list';
 import UserPanel from '../../ui/user-panel/user-panel';
-import { NavLinks } from '../../../const';
+import { AppRoutes, NavLinks } from '../../../const';
 
-function Header({isMain}) {
+function Header({isMain, currentPage}) {
   const navLinks = [
     {
       name: NavLinks.CATALOG,
-      href: '/',
+      href: AppRoutes.CATALOG,
     },
     {
       name: NavLinks.WHERE_BUY,
@@ -45,7 +45,7 @@ function Header({isMain}) {
           <Logo isLink={!isMain}/>
 
           <nav className={styles.navbar}>
-            <LinksList links={navLinks} currentPage={NavLinks.CATALOG} />
+            <LinksList links={navLinks} currentPage={currentPage} />
           </nav>
 
           <UserPanel />
@@ -58,6 +58,7 @@ function Header({isMain}) {
 
 Header.propTypes = {
   isMain: PropTypes.bool,
+  currentPage: PropTypes.string,
 };
 
 

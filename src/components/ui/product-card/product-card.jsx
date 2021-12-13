@@ -14,6 +14,7 @@ import Button from '../button/button';
 import ProductPopup from '../../blocks/product-popup/product-popup';
 import Popup from '../popup/popup';
 import { addToCart } from '../../../store/cart-slice/cart-slice';
+import { AppRoutes } from '../../../const';
 
 const Pictures = {
   'ukulelePhoto': ukulelePhoto,
@@ -54,7 +55,7 @@ function ProductCard({className, guitarData}) {
       closeModal={() => setSuccessModalIsOpen(false)}
       title={'Товар успешно добавлен в корзину'}
     >
-      <Button className={styles['popup-btn']} onClick={addToCartHandler} primary>Перейти в корзину</Button>
+      <Button className={styles['popup-btn']} to={AppRoutes.CART} primary>Перейти в корзину</Button>
       <Button className={styles['popup-btn']} onClick={() => setSuccessModalIsOpen(false)} ghost>Продолжить покупки</Button>
     </Popup>
   );
@@ -80,8 +81,8 @@ function ProductCard({className, guitarData}) {
         </div>
 
         <div className={styles.buttons}>
-          <Button to={'/#'} secondary>Подробнее</Button>
-          <Button to={'/#'} primary icon onClick={() => setGuitarModalIsOpen(true)}>
+          <Button to={'#'} secondary>Подробнее</Button>
+          <Button to={'#'} primary icon onClick={() => setGuitarModalIsOpen(true)}>
             <img src={cartIcon} alt='' width='12' height='12'/>
             <span>Купить</span>
           </Button>

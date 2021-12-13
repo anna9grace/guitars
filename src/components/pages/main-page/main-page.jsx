@@ -4,33 +4,26 @@ import Header from '../../blocks/header/header';
 import Footer from '../../blocks/footer/footer';
 import Title from '../../ui/title/title';
 import Breadcrumbs from '../../ui/breadcrumbs/breadcrumbs';
-import Catalog from '../../blocks/catalog/catalog';
-import { AppRoutes, NavLinks } from '../../../const';
 
-function CatalogPage() {
+function MainPage() {
   const BreadcrumbsLinks = [
     {
-      path: AppRoutes.ROOT,
       name: 'Главная',
-    },
-    {
-      name: 'Каталог',
     },
   ];
 
   return (
     <div className={'wrapper'}>
-      <Header currentPage={NavLinks.CATALOG}/>
+      <Header isMain/>
       <main className={'container'}>
-        <Title>Каталог гитар</Title>
+        <Title>Интернет-магазин гитар</Title>
         <Breadcrumbs links={BreadcrumbsLinks}/>
-        <Catalog />
       </main>
-      <Footer />
+      <Footer isMain />
     </div>
 
   );
 }
 
-export default CatalogPage;
+export default MainPage;
 

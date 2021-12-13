@@ -2,6 +2,7 @@ export const MAX_PRODUCTS_SHOWN = 9;
 
 export const AppRoutes = {
   ROOT: '/',
+  CATALOG: '/catalog',
   CART: '/cart',
 };
 
