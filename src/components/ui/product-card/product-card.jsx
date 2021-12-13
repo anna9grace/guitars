@@ -3,10 +3,6 @@ import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import ukulelePhoto from './ukulele.png';
-import acousticPhoto from './acoustic.png';
-import electroPhoto from './electro.png';
-
 import styles from './product-card.module.scss';
 import cartIcon from './icon_to-cart.svg';
 import Rating from '../rating/rating';
@@ -16,11 +12,18 @@ import Popup from '../popup/popup';
 import { addToCart } from '../../../store/cart-slice/cart-slice';
 import { AppRoutes } from '../../../const';
 
+
+// ! заменить
+import ukulelePhoto from './ukulele.png';
+import acousticPhoto from './acoustic.png';
+import electroPhoto from './electro.png';
+
 const Pictures = {
   'ukulelePhoto': ukulelePhoto,
   'electroPhoto': electroPhoto,
   'acousticPhoto': acousticPhoto,
 };
+// ! ENDзаменить
 
 function ProductCard({className, guitarData}) {
   const dispatch = useDispatch();

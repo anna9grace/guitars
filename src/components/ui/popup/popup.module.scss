@@ -21,17 +21,18 @@
   right: -30px;
   width: 18px;
   height: 18px;
-  background: url('./icon_cross.svg') center no-repeat;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
+  padding: 0;
   z-index: 5;
   transition: all var(--default-transition-settings);
+  color: var(--color-secondary);
 
   &:hover,
-  &:focus-visible {
-    box-shadow: 0 0 1px 1px var(--color-secondary-active);
-    outline: none;
+  &:focus {
+    color: var(--color-secondary-hover);
+  }
+
+  &:active {
+    color: var(--color-secondary-active);
   }
 }
 

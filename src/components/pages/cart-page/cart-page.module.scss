@@ -4,3 +4,11 @@
   margin-bottom: 150px;
   text-align: center;
 }
+
+.list {
+  padding-left: 0;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  list-style: none;
+  border-bottom: 1px solid var(--color-bg-light);
+}

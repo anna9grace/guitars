@@ -18,6 +18,15 @@ const cartSlice = createSlice({
       }
       state.goodsInCartCount++;
     },
+    decreaseQuantityInCart (state, {payload}) {
+      const index = state.guitarsInCart.findIndex((item) => item.id === payload.id);
+      if (payload.quantity > 1) {
+        state.guitarsInCart[index].quantity--;
+      } else {
+        state.guitarsInCart = state.guitarsInCart.filter((item) => item.id !== payload.id);
+      }
+      state.goodsInCartCount--;
+    },
     removeFromCart (state, {payload}) {
       state.guitarsInCart = state.guitarsInCart.filter((item) => item.id !== payload.id);
       state.goodsInCartCount -= payload.quantity;
@@ -25,5 +34,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const {addToCart, removeFromCart} = cartSlice.actions;
+export const {addToCart, removeFromCart, decreaseQuantityInCart} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 
 import Popup from '../../ui/popup/popup';
 import styles from './product-popup.module.scss';
-
-const GuitarType = {
-  'acoustic': 'Акустическая гитара',
-  'electric': 'Электрогитара',
-  'ukulele': 'Укулеле',
-};
+import { GuitarType } from '../../../const';
 
 function ProductPopup({guitarData, closeModal, children, ...attrs}) {
 

@@ -53,3 +53,9 @@ export const SortSettings = {
     DOWN: 'down',
   },
 };
+
+export const GuitarType = {
+  'acoustic': 'Акустическая гитара',
+  'electric': 'Электрогитара',
+  'ukulele': 'Укулеле',
+};

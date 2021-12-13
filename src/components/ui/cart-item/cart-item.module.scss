@@ -1,8 +1,109 @@
 .wrapper {
+  display: flex;
   min-height: 164px;
+  padding: 20px 0;
   border-top: 1px solid var(--color-bg-light);
+}
 
-  &:last-of-type {
-    border-bottom: 1px solid var(--color-bg-light);
+.delete-btn {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin-left: 5px;
+  color: var(--color-secondary);
+
+  &:hover,
+  &:focus {
+    color: var(--color-secondary-hover);
   }
+
+  &:active {
+    color: var(--color-secondary-active);
+  }
+}
+
+.picture {
+  height: 124px;
+  margin-left: 25px;
+  margin-right: 68px;
+  flex-shrink: 0;
+
+  img {
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.info {
+  display: flex;
+  flex-grow: 1;
+}
+
+.description {
+  margin-right: 20px;
+  flex-grow: 1;
+}
+
+.guitar-name {
+  margin-bottom: 14px;
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+.guitar-features {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+.price {
+  display: flex;
+  flex-basis: 54.5%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.guitar-total {
+  font-weight: 700;
+}
+
+.guitar-price {
+  flex-basis: 30%;
+}
+
+.guitar-total {
+  flex-basis: 30%;
+  text-align: right;
+}
+
+.guitar-quantity {
+  display: flex;
+  min-width: 82px;
+  height: 30px;
+  border: 1px solid var(--color-secondary);
+}
+
+.quantity-btn {
+  width: 28px;
+  flex-shrink: 0;
+  color: var(--color-secondary);
+}
+
+.quantity-value {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--color-secondary-hover);
+  border-right: 1px solid var(--color-secondary);
+  border-left: 1px solid var(--color-secondary);
 }

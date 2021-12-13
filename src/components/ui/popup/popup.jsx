@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './popup.module.scss';
+import Button from '../button/button';
 
 const customStyles = {
   overlay: {
@@ -38,7 +39,12 @@ function Popup({children, className, modalIsOpen, closeModal, title=''}) {
     >
       <div className={classNames(styles.wrapper, className)}>
         <h2 className={styles.title}>{title}</h2>
-        <button className={styles['close-btn']} onClick={closeModal}><span className={'visually-hidden'}>close</span></button>
+        <Button className={styles['close-btn']} onClick={closeModal}>
+          <span className={'visually-hidden'}>close</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.77 14.835L9.00004 10.0575L4.23004 14.835L3.16504 13.77L7.94254 9.00004L3.16504 4.23004L4.23004 3.16504L9.00004 7.94254L13.77 3.17254L14.8275 4.23004L10.0575 9.00004L14.8275 13.77L13.77 14.835Z" fill="currentColor"/>
+          </svg>
+        </Button>
         <div className={styles.content}>
           {children}
         </div>
