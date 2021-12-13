@@ -1,5 +1,10 @@
 export const MAX_PRODUCTS_SHOWN = 9;
 
+export const AppRoutes = {
+  ROOT: '/',
+  CART: '/cart',
+};
+
 export const NameSpace = {
   DATA: 'dataSlice',
   CART: 'cartSlice',
