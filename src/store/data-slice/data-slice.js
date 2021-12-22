@@ -30,6 +30,9 @@ const dataSlice = createSlice({
       state.filteredGuitars = sortGuitars(payload, initialSortState.type, initialSortState.direction);
       state.isDataLoaded = true;
     },
+    changeDataStatus (state) {
+      state.isDataLoaded = !state.isDataLoaded;
+    },
     setSortSettings (state, {payload: {sortType, value}}) {
       state.sorting[sortType] = value;
       state.filteredGuitars = sortGuitars(state.filteredGuitars, state.sorting.type, state.sorting.direction);
@@ -42,5 +45,5 @@ const dataSlice = createSlice({
   },
 });
 
-export const {loadGuitars, setSortSettings, setFilters} = dataSlice.actions;
+export const {loadGuitars, changeDataStatus, setSortSettings, setFilters} = dataSlice.actions;
 export default dataSlice.reducer;

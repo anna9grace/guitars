@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const URL = 'https://guitars-5a1bb-default-rtdb.europe-west1.firebasedatabase.app/guitars.json';
-const REQUEST_TIMEOUT = 5000;
+const REQUEST_TIMEOUT = 10000;
 
 export const createApi = () => {
   const api = axios.create({
@@ -12,7 +12,7 @@ export const createApi = () => {
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
-    throw new Error(err.response);
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
