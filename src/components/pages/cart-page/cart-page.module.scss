@@ -12,3 +12,65 @@
   list-style: none;
   border-bottom: 1px solid var(--color-bg-light);
 }
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.promo {
+  font-size: 12px;
+  line-height: 15px;
+
+  p {
+    margin: 0;
+    margin-top: 8px;
+  }
+
+  b {
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+.promo-wrapper {
+  display: flex;
+  margin-top: 20px;
+}
+
+.promo-input {
+  margin-right: 33px;
+
+  input {
+    height: 36px;
+    width: 170px;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.promo-btn {
+  font-size: 16px;
+  line-height: 16px;
+  padding: 10px 20px;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.order-btn {
+  margin-top: auto;
+  padding: 10px 34px;
+  font-size: 16px;
+  line-height: 16px;
+}

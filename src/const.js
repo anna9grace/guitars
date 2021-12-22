@@ -59,3 +59,4 @@ export const GuitarType = {
   'electric': 'Электрогитара',
   'ukulele': 'Укулеле',
 };
+

@@ -3,24 +3,12 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import styles from './cart-item.module.scss';
+import Button from '../button/button';
 import { GuitarType } from '../../../const';
 import { addToCart, removeFromCart, decreaseQuantityInCart } from '../../../store/cart-slice/cart-slice';
 
-// ! заменить
-import ukulelePhoto from './ukulele.png';
-import acousticPhoto from './acoustic.png';
-import electroPhoto from './electro.png';
-import Button from '../button/button';
-
-const Pictures = {
-  'ukulelePhoto': ukulelePhoto,
-  'electroPhoto': electroPhoto,
-  'acousticPhoto': acousticPhoto,
-};
-// ! ENDзаменить
 
 function CartItem({guitarData}) {
-  const pic = guitarData.picture;
   const dispatch = useDispatch();
   const increaseHandler = () => dispatch(addToCart(guitarData));
   const decreaseHandler = () => dispatch(decreaseQuantityInCart(guitarData));
@@ -37,8 +25,8 @@ function CartItem({guitarData}) {
 
       <div className={styles.picture}>
         <picture>
-          <img src={Pictures[pic]} alt={guitarData.name} height="128"
-            srcSet={Pictures[pic]}
+          <img src={guitarData.picture} alt={guitarData.name} height="128"
+            srcSet={guitarData.picture}
           />
         </picture>
       </div>

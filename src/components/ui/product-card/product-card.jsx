@@ -12,24 +12,10 @@ import Popup from '../popup/popup';
 import { addToCart } from '../../../store/cart-slice/cart-slice';
 import { AppRoutes } from '../../../const';
 
-
-// ! заменить
-import ukulelePhoto from './ukulele.png';
-import acousticPhoto from './acoustic.png';
-import electroPhoto from './electro.png';
-
-const Pictures = {
-  'ukulelePhoto': ukulelePhoto,
-  'electroPhoto': electroPhoto,
-  'acousticPhoto': acousticPhoto,
-};
-// ! ENDзаменить
-
 function ProductCard({className, guitarData}) {
   const dispatch = useDispatch();
   const [guitarModalIsOpen, setGuitarModalIsOpen] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
-  const pic = guitarData.picture;
 
   const addToCartHandler = (evt) => {
     evt.preventDefault();
@@ -43,10 +29,7 @@ function ProductCard({className, guitarData}) {
       modalIsOpen={guitarModalIsOpen}
       closeModal={() => setGuitarModalIsOpen(false)}
       title={'Добавить товар в корзину'}
-      guitarData={{
-        ...guitarData,
-        img: Pictures[pic],
-      }}
+      guitarData={guitarData}
     >
       <Button className={styles['popup-btn']} onClick={addToCartHandler} primary>Добавить в корзину</Button>
     </ProductPopup>
@@ -68,8 +51,8 @@ function ProductCard({className, guitarData}) {
     <article className={classNames(styles.wrapper, className)}>
       <div className={styles.photo}>
         <picture>
-          <img src={`${Pictures[pic]}`} alt={guitarData.name} width="80" height="202"
-            srcSet={`${Pictures[pic]}`}
+          <img src={guitarData.picture} alt={guitarData.name} width="80" height="202"
+            srcSet={guitarData.picture}
           />
         </picture>
       </div>

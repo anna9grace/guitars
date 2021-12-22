@@ -7,7 +7,6 @@ import { GuitarType } from '../../../const';
 
 function ProductPopup({guitarData, closeModal, children, ...attrs}) {
 
-
   return (
     <Popup
       closeModal={closeModal}
@@ -16,8 +15,8 @@ function ProductPopup({guitarData, closeModal, children, ...attrs}) {
       <div className={styles.guitar}>
         <div className={styles.picture}>
           <picture>
-            <img src={guitarData.img} alt={guitarData.name} height="128"
-              srcSet={guitarData.img}
+            <img src={guitarData.picture} alt={guitarData.name} height="128"
+              srcSet={guitarData.picture}
             />
           </picture>
         </div>
@@ -43,7 +42,7 @@ ProductPopup.propTypes = {
   guitarData: PropTypes.shape({
     article: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     reviews: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
