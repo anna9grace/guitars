@@ -13,6 +13,7 @@ import { getGuitarsInCart } from '../../../store/cart-slice/selectors';
 import Button from '../../ui/button/button';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import classNames from 'classnames';
 
 const BreadcrumbsLinks = [
   {
@@ -28,10 +29,17 @@ const BreadcrumbsLinks = [
   },
 ];
 
+const MESSAGE_TIMEOUT = 3000;
+
 const PromoCodes = {
   GITARAHIT: 'GITARAHIT',
   SUPERGITARA: 'SUPERGITARA',
   GITARA2020: 'GITARA2020',
+};
+
+const MessageTexts = {
+  WRONG_PROMOCODE: 'Недействительный промо-код',
+  ALREADY_APPLIED: 'Нельзя применить более одного промо-кода',
 };
 
 const getFinalPrice = (price, promoCode) => {
@@ -52,15 +60,31 @@ function CatalogPage() {
   const guitarsInCart = useSelector(getGuitarsInCart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [promoCode, setPromoCode] = useState('');
+  const [isPromoApplied, setIsPromoApplied] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (guitarsInCart.length > 0) {
       setTotalPrice(guitarsInCart.reduce((total, item) => total + item.price * item.quantity, 0));
     }
-  } , [guitarsInCart]);
+  }, [guitarsInCart]);
+
+  const showMessage = (text) => {
+    setMessage(text);
+    setTimeout(() => setMessage(''), MESSAGE_TIMEOUT);
+  };
 
   const promoApplyHandler = () => {
+    if (isPromoApplied) {
+      showMessage(MessageTexts.ALREADY_APPLIED);
+      return;
+    }
+    if (!Object.values(PromoCodes).includes(promoCode)) {
+      showMessage(MessageTexts.WRONG_PROMOCODE);
+      return;
+    }
     setTotalPrice(getFinalPrice(totalPrice, promoCode));
+    setIsPromoApplied(true);
   };
 
   const renderCart = (items) => (
@@ -78,6 +102,8 @@ function CatalogPage() {
           <b>Промокод на скидку</b>
           <p className={styles['promo-text']}>Введите свой промокод, если он у вас есть.</p>
           <div className={styles['promo-wrapper']}>
+
+            <div className={classNames(styles.tooltip, message && styles['tooltip--opened'])}>{message}</div>
             <Input
               className={styles['promo-input']}
               type={'text'}
