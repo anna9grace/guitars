@@ -99,18 +99,22 @@ const renderCheckbox = (name, state, changeHandler) => (
       newState[name].value = !state[name].value;
       changeHandler(newState);
     }}
-
   >
     {state[name].label}
   </Input>
 );
 
+
 const disableStringsOptions = (stringsState, typeState, updateState) => {
   const newStringsState = {...stringsState};
-  stringsState[StringsOptions.FOUR].isDisabled = typeState[TypeOptions.ACOUSTIC].value;
-  stringsState[StringsOptions.SIX].isDisabled = typeState[TypeOptions.UKULELE].value;
-  stringsState[StringsOptions.SEVEN].isDisabled = typeState[TypeOptions.UKULELE].value;
-  stringsState[StringsOptions.TWELVE].isDisabled = typeState[TypeOptions.UKULELE].value || typeState[TypeOptions.ELECTRIC].value;
+  const isAcoustic = typeState[TypeOptions.ACOUSTIC].value;
+  const isElectric = typeState[TypeOptions.ELECTRIC].value;
+  const isUkulele = typeState[TypeOptions.UKULELE].value;
+
+  stringsState[StringsOptions.FOUR].isDisabled = isAcoustic && !isElectric && !isUkulele;
+  stringsState[StringsOptions.SIX].isDisabled = isUkulele && !isAcoustic && !isElectric;
+  stringsState[StringsOptions.SEVEN].isDisabled = isUkulele && !isAcoustic && !isElectric;
+  stringsState[StringsOptions.TWELVE].isDisabled = (isElectric || isUkulele) && !isAcoustic;
   updateState(newStringsState);
 };
 
