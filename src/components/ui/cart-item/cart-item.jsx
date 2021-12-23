@@ -1,18 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import styles from './cart-item.module.scss';
 import Button from '../button/button';
+import ProductPopup from '../../blocks/product-popup/product-popup';
 import { GuitarType } from '../../../const';
 import { addToCart, removeFromCart, decreaseQuantityInCart } from '../../../store/cart-slice/cart-slice';
 
 
 function CartItem({guitarData}) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const dispatch = useDispatch();
   const increaseHandler = () => dispatch(addToCart(guitarData));
-  const decreaseHandler = () => dispatch(decreaseQuantityInCart(guitarData));
   const removeHandler = () => dispatch(removeFromCart(guitarData));
+  const decreaseHandler = () => {
+    if (guitarData.quantity === 1) {
+      setModalIsOpen(true);
+      return;
+    }
+    dispatch(decreaseQuantityInCart(guitarData));
+  };
+
+  const renderModal = () => (
+    <ProductPopup
+      modalIsOpen={modalIsOpen}
+      closeModal={() => setModalIsOpen(false)}
+      title={'Удалить этот товар?'}
+      guitarData={guitarData}
+    >
+      <Button className={styles['popup-btn']} onClick={removeHandler} primary>Удалить товар</Button>
+      <Button className={styles['popup-btn']} onClick={() => setModalIsOpen(false)} ghost>Продолжить покупки</Button>
+    </ProductPopup>
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -57,6 +78,8 @@ function CartItem({guitarData}) {
           <p className={styles['guitar-total']}>{guitarData.price * guitarData.quantity} ₽</p>
         </div>
       </div>
+
+      {modalIsOpen && renderModal()}
     </div>
   );
 }

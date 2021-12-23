@@ -20,11 +20,7 @@ const cartSlice = createSlice({
     },
     decreaseQuantityInCart (state, {payload}) {
       const index = state.guitarsInCart.findIndex((item) => item.id === payload.id);
-      if (payload.quantity > 1) {
-        state.guitarsInCart[index].quantity--;
-      } else {
-        state.guitarsInCart = state.guitarsInCart.filter((item) => item.id !== payload.id);
-      }
+      state.guitarsInCart[index].quantity--;
       state.goodsInCartCount--;
     },
     removeFromCart (state, {payload}) {
